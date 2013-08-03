@@ -85,6 +85,9 @@ INSTALLED_APPS = (
     # 'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
+    'south',
+    #'haystack',
+    'timeline',
 )
 
 # A sample logging configuration. The only tangible logging
@@ -115,3 +118,21 @@ LOGGING = {
         },
     }
 }
+
+CACHES = {
+		'default': {
+			'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+			'LOCATION': '127.0.0.1:11211',
+		}
+}
+
+import os
+HAYSTACK_CONNECTIONS = {
+		'default': {
+			'ENGINE': 'haystack.backends.xapian_backend.XapianEngine',
+			'PATH': os.path.join(os.path.dirname(__file__), 'xapian_index'),
+			'HAYSTACK_XAPIAN_LANGUAGE': 'de',
+			'INCLUDE_SPELLING': True,
+		},
+}
+
