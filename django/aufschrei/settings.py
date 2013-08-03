@@ -1,5 +1,10 @@
 # Django settings for aufschrei project.
 
+try:
+	from local_settings import *
+except ImportError:
+	pass
+
 ADMINS = (
 	('Lars Weiler', 'lars@konvergenzfehler.de'),
 )
