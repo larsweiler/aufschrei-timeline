@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block pagetitle %}User Details{% endblock %}
+{% block contenttitle %}{{ user.name }}{% endblock %}
+
+{% block content %}
+<div class="media">
+	<a class="pull-left" href="#">
+		<img class="media-object" src="{{ user.image_url }}" alt="{{ user.name }}"/>
+	</a>
+	<div class="media-body">
+		<h2 class="media-heading"><a href="http://twitter.com/{{ user.name }}">{{ user.name }}</a></h2>
+	</div>
+</div>
+
+<h2>{{ num_tweets }} Tweets</h2>
+
+<ul>
+	{% for tweet in tweets %}
+	<li>
+		[{{ tweet.created_at|date:"r" }}] {{ tweet.text }}
+	</li>
+	{% endfor %}
+</ul>
+
+<!--
+<ul>
+	{% for k, v in user.get_details %}
+	<li>{{ k }}: {{ v }}</li>
+	{% endfor %}
+</ul>
+-->
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block pagetitle %}List{% endblock %}
+{% block contenttitle %}Timeline{% endblock %}
+
+{% block content %}
+
+{% for tweet in timeline %}
+<div class="media">
+	<a class="pull-left" href="/user/{{ tweet.user.id }}/"><img class="media-object" src="{{ tweet.user.image_url }}" alt="{{ tweet.user.name }}"/></a>
+	<div class="media-body">
+		<h4 class="media-heading">{{ tweet.text }}</h4>
+		<p><a href="/user/{{ tweet.user.id }}/">{{ tweet.user.name }}</a> &mdash; <a href="/tweet/{{ tweet.tweet_id }}/">{{ tweet.created_at|date:"r" }}</a></p>
+		{% if tweet.url.all %}
+			{% for url in tweet.url.all %}
+			<a class="pull-left" href="{{ url.longurl }}"><img class="media-object" src="{{ url.faviconurl }}" width="48px" height="48px" /></a>
+			<div class="media-body">
+				{{ url.url }}
+				<h4 class="media-heading">{{ url.title }}</h4>
+				<a href="{{ url.longurl }}">{{url.longurl}}</a><br/>
+			</div>
+			{% endfor %}
+		{% endif %}
+		{% if tweet.image.all %}
+			{% for img in tweet.image.all %}
+			<img src="{{ img.image_url }}"/>
+			{% endfor %}
+		{% endif %}
+	</div>
+</div>
+{% endfor %}
+
+<ul class="pager">
+	{% if timeline.has_previous %}
+	<li class="previous">
+		<a href="?page={{ timeline.previous_page_number }}">&larr; &Auml;lter</a>
+	{% else %}
+	<li class="previous disabled">
+		<a href="#">&larr; &Auml;lter</a>
+	{% endif %}
+	</li>
+
+	{% if timeline.has_next %}
+	<li class="next">
+		<a href="?page={{ timeline.next_page_number }}">Neuer &rarr;</a>
+	{% else %}
+	<li class="next disabled">
+		<a href="#">Neuer &rarr;</a>
+	{% endif %}
+	</li>
+</ul>
+
+<h4>Insgesamt {{ tweets }} Tweets</h4>
+<p>Zeige aktuell Tweets {{ timeline.start_index }} bis {{ timeline.end_index }}.</p>
+{% endblock %}

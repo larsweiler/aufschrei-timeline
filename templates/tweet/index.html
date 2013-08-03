@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block pagetitle %}Details{% endblock %}
+{% block contenttitle %}Details{% endblock %}
+
+{% block content %}
+<ul>
+	{% for k, v in tweet.get_details %}
+	<li>{{ k }}: {{ v }}</li>
+	{% endfor %}
+</ul>
+<p>{{ tweet.user }}</p>
+<p>{{ tweet.text }}</p>
+<p>{{ tweet.tweet_url }}</p>
+{% endblock %}
