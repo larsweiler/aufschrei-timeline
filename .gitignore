@@ -1,2 +1,6 @@
 *.pyc
 *.zip
+django/aufschrei/local_settings.py
+media/images/
+media/profile/
+django/timeline/fixtures/
