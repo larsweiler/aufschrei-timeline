@@ -37,6 +37,7 @@ def user(request, id):
 	return render_to_response(
 			'user/index.html',
 			{'user': u, 'tweets': t, 'num_tweets': len(t)},
+			context_instance=RequestContext(request)
 		)
 
 def tweet(request, tweet_id):
@@ -47,5 +48,6 @@ def tweet(request, tweet_id):
 	return render_to_response(
 			'tweet/index.html',
 			{'tweet': t},
+			context_instance=RequestContext(request)
 		)
 

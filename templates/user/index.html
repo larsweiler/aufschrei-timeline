@@ -1,32 +1,56 @@
 {% extends 'base.html' %}
+{% load staticfiles %}
 {% block pagetitle %}User Details{% endblock %}
 {% block contenttitle %}{{ user.name }}{% endblock %}
 
 {% block content %}
-<div class="media">
-	<a class="pull-left" href="#">
-		<img class="media-object" src="{{ user.image_url }}" alt="{{ user.name }}"/>
-	</a>
-	<div class="media-body">
-		<h2 class="media-heading"><a href="http://twitter.com/{{ user.name }}">{{ user.name }}</a></h2>
-	</div>
+
+<div class="page-header">
+	<h1><a href="https://twitter.com/{{ user.name }}">{{ user.name }}</a> <small>{{ num_tweets }} Tweets</small></h1>
 </div>
 
-<h2>{{ num_tweets }} Tweets</h2>
-
-<ul>
+<ul class="media-list">
 	{% for tweet in tweets %}
-	<li>
-		[{{ tweet.created_at|date:"r" }}] {{ tweet.text }}
+	<li class="media">
+		<a class="pull-left" href="/user/{{ tweet.user.id }}/"><img class="media-object" src="/{{ MEDIA_URL }}profile/{{ tweet.user.image }}" alt="{{ tweet.user.name }}"/></a>
+		<div class="media-body">
+			<h4 class="media-heading">{{ tweet.text }}</h4>
+			<p><a href="/user/{{ tweet.user.id }}/">{{ tweet.user.name }}</a> &mdash; <a href="/tweet/{{ tweet.tweet_id }}/">{{ tweet.created_at|date:"r" }}</a></p>
+
+			{% if tweet.url.all %}
+			<div class="panel">
+			<div class="panel-heading">Link(s)</div>
+			{% for url in tweet.url.all %}
+			<div class="media">
+				<a class="pull-left" href="{{ url.longurl }}"><img class="media-object" src="{{ url.faviconurl }}" width="48px" height="48px" /></a>
+				<div class="media-body">
+					{{ url.url }}
+					<h4 class="media-heading">{{ url.title }}</h4>
+					<a href="{{ url.longurl }}">{{url.longurl}}</a><br/>
+				</div>
+			</div>
+			{% endfor %}
+			</div>
+			{% endif %}
+
+			{% if tweet.image.all %}
+			<div class="panel">
+			<div class="panel-heading">Bild(er)</div>
+			<div class="row">
+			{% for img in tweet.image.all %}
+				<div class="col-lg-3">
+					<a href="{{ img.image_url }}" class="thumbnail">
+						<img src="/{{ MEDIA_URL }}images/{{ img.image }}" alt=""/>
+					</a>
+				</div>
+			{% endfor %}
+			</div>
+			</div>
+			{% endif %}
+
+		</div>
 	</li>
 	{% endfor %}
 </ul>
 
-<!--
-<ul>
-	{% for k, v in user.get_details %}
-	<li>{{ k }}: {{ v }}</li>
-	{% endfor %}
-</ul>
--->
 {% endblock %}

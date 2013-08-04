@@ -37,7 +37,7 @@
 			{% for img in tweet.image.all %}
 				<div class="col-lg-3">
 					<a href="{{ img.image_url }}" class="thumbnail">
-						<img src="{{ img.image_url }}" alt=""/>
+						<img src="/{{ MEDIA_URL }}images/{{ img.image }}" alt=""/>
 					</a>
 				</div>
 			{% endfor %}
