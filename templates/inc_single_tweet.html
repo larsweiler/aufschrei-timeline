@@ -1,0 +1,43 @@
+<div class="panel">
+<div class="media">
+{% include "inc_tweet_content.html" %}
+</div>
+</div>
+
+<div class="panel">
+	<a href="https://twitter.com/{{ tweet.user.name }}/status/{{ tweet.tweet_id }}">Originallink zu Twitter</a>
+</div>
+
+{% if tweet.retweet %}
+<div class="panel">
+	Tweet ist ein Retweet
+</div>
+{% endif %}
+
+{% if tweet.hashtags %}
+<div class="panel">
+	<div class="panel-heading">Hashtags</div>
+	{% for tag in tweet.hashtags.all %}
+		<span class="label">#{{ tag.name }}</span>
+	{% endfor %}
+</div>
+{% endif %}
+
+{% if tweet.in_reply_to %}
+<div class="panel">
+	<div class="panel-heading">Antwort auf</div>
+	Tweet Nummer <a href="{% url 'timeline.views.tweet' tweet.in_reply_to %}">{{ tweet.in_reply_to }}</a>
+</div>
+{% endif %}
+
+<div class="panel">
+	<div class="panel-heading">Client</div>
+	{{ tweet.source|safe }}
+</div>
+
+{% if tweet.geo_coordinates %}
+<div class="panel">
+	<div class="panel-heading">Geokoordinaten</div>
+	{{ tweet.geo_coordinates|cut:"["|cut:"]" }}<br/>
+</div>
+{% endif %}

@@ -14,7 +14,6 @@ def start(request):
 		)
 
 def timeline(request):
-	#timeline_list = Tweet.objects.all().order_by('created_at')
 	timeline_list = Tweet.objects.filter(retweet=False).order_by('created_at')
 	tweets = len(timeline_list)
 	paginator = Paginator(timeline_list, 25)
@@ -36,12 +35,22 @@ def timeline(request):
 def user(request, id):
 	try:
 		u = User.objects.get(pk=id)
-		t = Tweet.objects.filter(user__id=id).order_by('created_at')
+		t_list = Tweet.objects.filter(user__id=id).order_by('created_at')
+		tweets = len(t_list)
+		paginator = Paginator(t_list, 25)
+		page = request.GET.get('page')
+		try:
+			t = paginator.page(page)
+		except PageNotAnInteger:
+			t = paginator.page(1)
+		except EmptyPage:
+			t = paginator.page(paginator.num_pages)
+
 	except User.DoesNotExist:
 		raise Http404
 	return render_to_response(
 			'user/index.html',
-			{'user': u, 'tweets': t, 'num_tweets': len(t)},
+			{'user': u, 'timeline': t, 'tweets': tweets},
 			context_instance=RequestContext(request)
 		)
 

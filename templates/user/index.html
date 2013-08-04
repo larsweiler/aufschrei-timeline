@@ -6,53 +6,9 @@
 {% block content %}
 
 <div class="page-header">
-	<h1><a href="https://twitter.com/{{ user.name }}">{{ user.name }}</a> <small>{{ num_tweets }} Tweets</small></h1>
+	<h1><a href="https://twitter.com/{{ user.name }}">{{ user.name }}</a> <small>{{ tweets }} Tweets</small></h1>
 </div>
 
-<ul class="media-list">
-	{% for tweet in tweets %}
-	<li class="media">
-		<a class="pull-left" href="{% url 'timeline.views.user' tweet.user.id %}/">
-			<img class="media-object" src="/{{ MEDIA_URL }}profile/{{ tweet.user.image }}" alt="{{ tweet.user.name }}"/>
-		</a>
-		<div class="media-body">
-			<h4 class="media-heading">{{ tweet.text }}</h4>
-			<p><a href="{% url 'timeline.views.user' tweet.user.id %}/">{{ tweet.user.name }}</a> &mdash; <a href="{% url 'timeline.views.tweet' tweet.tweet_id %}/">{{ tweet.created_at|date:"r" }}</a></p>
-
-			{% if tweet.url.all %}
-			<div class="panel">
-			<div class="panel-heading">Link(s)</div>
-			{% for url in tweet.url.all %}
-			<div class="media">
-				<a class="pull-left" href="{{ url.longurl }}"><img class="media-object" src="{{ url.faviconurl }}" width="48px" height="48px" /></a>
-				<div class="media-body">
-					{{ url.url }}
-					<h4 class="media-heading">{{ url.title }}</h4>
-					<a href="{{ url.longurl }}">{{url.longurl}}</a><br/>
-				</div>
-			</div>
-			{% endfor %}
-			</div>
-			{% endif %}
-
-			{% if tweet.image.all %}
-			<div class="panel">
-			<div class="panel-heading">Bild(er)</div>
-			<div class="row">
-			{% for img in tweet.image.all %}
-				<div class="col-lg-3">
-					<a href="{{ img.image_url }}" class="thumbnail">
-						<img src="/{{ MEDIA_URL }}images/{{ img.image }}" alt=""/>
-					</a>
-				</div>
-			{% endfor %}
-			</div>
-			</div>
-			{% endif %}
-
-		</div>
-	</li>
-	{% endfor %}
-</ul>
+{% include "inc_timeline_tweets.html" with timeline=timeline %}
 
 {% endblock %}

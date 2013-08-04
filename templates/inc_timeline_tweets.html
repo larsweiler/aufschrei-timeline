@@ -1,0 +1,30 @@
+<ul class="media-list">
+	{% for tweet in timeline %}
+	<li class="media">
+	{% include "inc_tweet_content.html" %}
+	</li>
+	{% endfor %}
+</ul>
+
+<ul class="pager">
+	{% if timeline.has_previous %}
+	<li class="previous">
+		<a href="?page={{ timeline.previous_page_number }}">&larr; &Auml;lter</a>
+	{% else %}
+	<li class="previous disabled">
+		<a href="#">&larr; &Auml;lter</a>
+	{% endif %}
+	</li>
+
+	{% if timeline.has_next %}
+	<li class="next">
+		<a href="?page={{ timeline.next_page_number }}">Neuer &rarr;</a>
+	{% else %}
+	<li class="next disabled">
+		<a href="#">Neuer &rarr;</a>
+	{% endif %}
+	</li>
+</ul>
+
+<h4>Insgesamt {{ tweets }} Tweets</h4>
+<p>Zeige aktuell Tweets {{ timeline.start_index }} bis {{ timeline.end_index }}.</p>
