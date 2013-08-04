@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block pagetitle %}#aufschrei{% endblock %}
+{% block contenttitle %}#aufschrei{% endblock %}
+{% block active_start %}active{% endblock %}
+
+{% block content %}
+
+<div class="jumbotron">
+	<h1>#aufschrei</h1>
+	<p>Eine Historie der ersten zwei Wochen mit 58007 unique Tweets</p>
+	<p><a class="btn btn-primary btn-large" href="{% url 'timeline.views.timeline' %}">Timeline</a></p>
+</div>
+
+<div class="body-content">
+	<div class="row">
+		<div class="col-lg-4">
+			<h2>Zufall</h2>
+			<p>Ein zuf&auml;lliger Tweet</p>
+			<p><a class="btn btn-default" href="{% comment %}{% url 'timeline.views.zufall' %}{% endcomment %}">Zufall</a></p>
+		</div>
+		<div class="col-lg-4">
+			<h2>Bilder</h2>
+			<p>Nur Tweets mit Bildern &ndash; der Abschaum pur</p>
+			<p><a class="btn btn-default" href="{% comment %}{% url 'timeline.views.bilder' %}{% endcomment %}">Bilder</a></p>
+		</div>
+		<div class="col-lg-4">
+			<h2>Links</h2>
+			<p>Nur Tweets mit Links</p>
+			<p><a class="btn btn-default" href="{% comment %}{% url 'timeline.views.links' %}{% endcomment %}">Links</a></p>
+		</div>
+	</div>
+</div>
+
+<hr/>
+
+<footer>
+	<p>Erstellt von <a href="http://konvergenzfehler.de/impressum/">Lars Weiler</a> im August 2013 unter der Lizenz <a href="http://creativecommons.org/choose/zero/?lang=de">CC0</a></p>
+	<p>Projekt auf Github</p>
+</footer>
+{% endblock %}

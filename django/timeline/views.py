@@ -8,6 +8,11 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Count
 from django.template.context import RequestContext
 
+def start(request):
+	return render_to_response(
+			'index.html',
+		)
+
 def timeline(request):
 	#timeline_list = Tweet.objects.all().order_by('created_at')
 	timeline_list = Tweet.objects.filter(retweet=False).order_by('created_at')
@@ -54,3 +59,19 @@ def tweet(request, tweet_id):
 			context_instance=RequestContext(request)
 		)
 
+def zufall(request):
+	import random
+	tweets = Tweet.objects.all().count()
+	random_tweet = random.random() * (tweets - 1)
+	try:
+		t = Tweets.objects.all()[slice: random_tweet+1]
+	except Tweet.DoesNotExist:
+		return render_to_response(
+				'tweet/unbekannt.html',
+				{'tweet': tweet_id},
+			)
+	return render_to_response(
+			'zufall/index.html',
+			{'tweet': t},
+			context_instance=RequestContext(request)
+		)

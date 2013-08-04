@@ -16,9 +16,11 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     # url(r'^admin/', include(admin.site.urls)),
+    url(r'^$', 'timeline.views.start', name='start'),
     url(r'^timeline/$', 'timeline.views.timeline'),
     url(r'^user/(?P<id>\d+)/$', 'timeline.views.user'),
     url(r'^tweet/(?P<tweet_id>\d+)/$', 'timeline.views.tweet'),
+    url(r'^zufall/$', 'timeline.views.zufall'),
 )
 
 if settings.DEBUG:
