@@ -8,8 +8,8 @@
 
 <div class="jumbotron">
 	<h1>#aufschrei</h1>
-	<p>Eine Historie der ersten zwei Wochen mit 58007 unique Tweets</p>
-	<p><a class="btn btn-primary btn-large" href="{% url 'timeline.views.timeline' %}">Timeline</a></p>
+	<p>Eine chronologisch sortierte Historie der ersten zwei Wochen #aufschrei mit 58007 unique Tweets</p>
+	<p><a class="btn btn-primary btn-large" href="{% url 'timeline.views.timeline' %}">Zur Timeline</a></p>
 </div>
 
 <div class="body-content">
@@ -21,33 +21,37 @@
 		</div>
 		<div class="col-lg-4">
 			<h2>Bilder</h2>
-			<p>Nur Tweets mit Bildern &ndash; der Abschaum pur</p>
+			<p>Eine chronologisch sortierte Liste von Tweets mit Bildern &ndash; der Abschaum pur</p>
 			<p><a class="btn btn-default" href="{% url 'timeline.views.bilder' %}">Bilder</a></p>
 		</div>
 		<div class="col-lg-4">
 			<h2>Links</h2>
-			<p>Nur Tweets mit Links</p>
+			<p>Eine chronologisch sortierte Liste von Tweets mit Links</p>
 			<p><a class="btn btn-default" href="{% url 'timeline.views.links' %}">Links</a></p>
 		</div>
 	</div>
+
+	<hr/>
+
+	<div class="row">
+		<div class="col-lg-6">
+			<h1>Das Projekt</h1>
+
+			<p>Im Januar 2013 wurde auf Twitter unter dem Hashtag <b>#aufschrei</b> eine Aktion gestartet, die in Deutschland eine gesellschaftliche Diskussion &uuml;ber Sexismus ausl&ouml;ste. Da Twitter-Suche nach Hashtags nur f&uuml;r einen kurzen Zeitraum von etwa neun Tagen nutzbar ist, wurden mittels einem Skript zeitnah die Tweets zu #aufschrei gespeichert, um sie zu einem sp&auml;teren Zeitpunkt aufbereitet zug&auml;nglich zu machen.</p>
+
+			<p>Nachdem die Daten l&auml;ngere Zeit vor sich hin schlummerten, entstand im August 2013 diese Webseite, um zumindest die historische Timeline f&uuml;r die ersten zwei Wochen der Twitter-Aktion zu dokumentieren.</p>
+
+			<p>Die Aktion #aufschrei wurde im Juni 2013 mit dem <a href="http://www.grimme-institut.de/html/index.php?id=1667#c10914">Grimme Online Award 2013</a> ausgezeichnet.</p>
+		</div>
+		<div class="col-lg-6">
+			<h1>Der Inhalt</h1>
+
+			<p>Die gesammelten Tweets stammen aus dem Zeitraum vom <b>Freitag, 25. Januar 2013 00:26:01 +0100</b> bis <b>Freitag, 8. Februar 2013 20:41:06 +0100</b>, also vom allerersten Tweet mit #aufschrei &uuml;ber etwa die ersten beiden Wochen. Das sind <b>93667 Tweets</b>, davon <b>35660 Retweets</b>, was <b>58007 unique Tweets</b> macht. In der Datenbank sind <b>25888 Benutzer</b>, die einen Tweet geschrieben haben oder einen Retweet absetzten. Au&szlig;erdem befinden sich <b>13992 Links</b> zu externen Seiten in der Datenbank; davon sind <b>783 Bilder</b>.</p>
+
+			<p>Technisch konnten nur Tweets von Benutzern gesammelt werden, die ihr Profil auf &laquo;public&raquo; geschaltet haben. Weiterhin entfernt Twitter manche Benutzer aus der Twitter-Suche, die beispielsweise zu viel unter einem Hashtag tweeten oder anderweitig auffallen.</p>
+		</div>
+	</div>
+
 </div>
 
-<hr/>
-
-<p>Zeitspanne: Freitag, 25. Januar 2013 00:26:01 +0100 bis Freitag, 8. Februar 2013 20:41:06 +0100</p>
-
-<p>Tweets: 93667, davon 35660 Retweets, was 58007 unique Tweets macht</p>
-
-<p>25888 Benutzer</p>
-
-<p>13992 Links</p>
-
-<p>783 Bilder</p>
-
-<hr/>
-
-<footer>
-	<p>Erstellt von <a href="http://konvergenzfehler.de/impressum/">Lars Weiler</a> im August 2013 unter der Lizenz <a href="http://creativecommons.org/choose/zero/?lang=de">CC0</a></p>
-	<p>Projekt auf Github</p>
-</footer>
 {% endblock %}
