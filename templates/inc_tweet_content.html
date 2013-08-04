@@ -1,4 +1,4 @@
-		<a class="pull-left" href="{% url 'timeline.views.user' tweet.user.id %}"><img class="media-object img-rounded" src="/{{ MEDIA_URL }}profile/{{ tweet.user.image }}" alt="{{ tweet.user.name }}"/></a>
+		<a class="pull-left" href="{% url 'timeline.views.user' tweet.user.id %}"><img class="media-object img-rounded" src="{{ MEDIA_URL }}profile/{{ tweet.user.image }}" alt="{{ tweet.user.name }}"/></a>
 		<div class="media-body">
 			<h4 class="media-heading">{{ tweet.text }}</h4>
 			<p><a href="{% url 'timeline.views.user' tweet.user.id %}">{{ tweet.user.name }}</a> &mdash; <a href="{% url 'timeline.views.tweet' tweet.tweet_id %}">{{ tweet.created_at|date:"r" }}</a></p>
@@ -26,7 +26,7 @@
 			{% for img in tweet.image.all %}
 				<div class="col-lg-3">
 					<a href="{{ img.image_url }}" class="thumbnail">
-						<img src="/{{ MEDIA_URL }}images/{{ img.image }}" alt=""/>
+						<img src="{{ MEDIA_URL }}images/{{ img.image }}" alt=""/>
 					</a>
 				</div>
 			{% endfor %}
