@@ -44,7 +44,10 @@ def tweet(request, tweet_id):
 	try:
 		t = Tweet.objects.get(pk=tweet_id)
 	except Tweet.DoesNotExist:
-		raise Http404
+		return render_to_response(
+				'tweet/unbekannt.html',
+				{'tweet': tweet_id},
+			)
 	return render_to_response(
 			'tweet/index.html',
 			{'tweet': t},
