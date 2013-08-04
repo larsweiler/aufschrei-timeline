@@ -15,7 +15,7 @@
 	</a>
 	<div class="media-body">
 		<h1 class="media-heading">{{ tweet.text }}</h1>
-		<p><a href="{% url 'timeline.views.user' tweet.user.id %}/">{{ tweet.user.name }}</a> &mdash; <a href="{% url 'timeline.views.tweet' tweet.tweet_id %}/">{{ tweet.created_at|date:"r" }}</a></p>
+		<p><a href="{% url 'timeline.views.user' tweet.user.id %}">{{ tweet.user.name }}</a> &mdash; <a href="{% url 'timeline.views.tweet' tweet.tweet_id %}">{{ tweet.created_at|date:"r" }}</a></p>
 
 		{% if tweet.url.all %}
 		<div class="panel">

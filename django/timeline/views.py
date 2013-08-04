@@ -72,3 +72,23 @@ def zufall(request):
 			{'tweets': t},
 			context_instance=RequestContext(request)
 		)
+
+def bilder(request):
+	timeline_list = Tweet.objects.filter(retweet=False,image__isnull=False).order_by('created_at')
+	tweets = len(timeline_list)
+	paginator = Paginator(timeline_list, 25)
+
+	page = request.GET.get('page')
+	try:
+		timeline = paginator.page(page)
+	except PageNotAnInteger:
+		timeline = paginator.page(1)
+	except EmptyPage:
+		timeline = paginator.page(paginator.num_pages)
+
+	return render_to_response(
+			'bilder/index.html',
+			{'timeline': timeline, 'tweets': tweets},
+			context_instance=RequestContext(request)
+		)
+

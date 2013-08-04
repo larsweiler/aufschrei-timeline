@@ -21,6 +21,7 @@ urlpatterns = patterns('',
     url(r'^user/(?P<id>\d+)/$', 'timeline.views.user'),
     url(r'^tweet/(?P<tweet_id>\d+)/$', 'timeline.views.tweet'),
     url(r'^zufall/$', 'timeline.views.zufall'),
+    url(r'^bilder/$', 'timeline.views.bilder'),
 )
 
 if settings.DEBUG:
