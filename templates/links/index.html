@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block pagetitle %}Links Seite {{ timeline.number }}{% endblock %}
+{% block contenttitle %}Links{% endblock %}
+{% block active_links %}active{% endblock %}
+
+{% block content %}
+
+{% include "inc_timeline_tweets.html" with timeline=timeline %}
+
+{% endblock %}
