@@ -1,0 +1,19 @@
+<ul class="pager">
+	{% if timeline.has_previous %}
+	<li class="previous">
+		<a href="?page={{ timeline.previous_page_number }}">&larr; &Auml;lter</a>
+	{% else %}
+	<li class="previous disabled">
+		<a href="#">&larr; &Auml;lter</a>
+	{% endif %}
+	</li>
+
+	{% if timeline.has_next %}
+	<li class="next">
+		<a href="?page={{ timeline.next_page_number }}">Neuer &rarr;</a>
+	{% else %}
+	<li class="next disabled">
+		<a href="#">Neuer &rarr;</a>
+	{% endif %}
+	</li>
+</ul>
