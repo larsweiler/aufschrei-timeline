@@ -8,6 +8,12 @@
 	<a href="https://twitter.com/{{ tweet.user.name }}/status/{{ tweet.tweet_id }}">Originallink zu Twitter</a>
 </div>
 
+{% if tweet.in_reply_to %}
+<div class="panel">
+	<a href="{% url 'timeline.views.tweet' tweet.in_reply_to %}">Referenz</a> zu diesem Reply
+</div>
+{% endif %}
+
 {% if tweet.retweet %}
 <div class="panel">
 	Tweet ist ein Retweet
@@ -20,13 +26,6 @@
 	{% for tag in tweet.hashtags.all %}
 		<span class="label">#{{ tag.name }}</span>
 	{% endfor %}
-</div>
-{% endif %}
-
-{% if tweet.in_reply_to %}
-<div class="panel">
-	<div class="panel-heading">Antwort auf</div>
-	Tweet Nummer <a href="{% url 'timeline.views.tweet' tweet.in_reply_to %}">{{ tweet.in_reply_to }}</a>
 </div>
 {% endif %}
 
