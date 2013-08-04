@@ -18,12 +18,14 @@
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
 				</button>
 				<a class="navbar-brand" href="#">{% block contenttitle %}{% endblock %}</a>
 				<div class="nav-collapse collapse">
 					<ul class="nav navbar-nav">
-						<li class="{% block active_start %}{% endblock %}"><a href="/">#aufschrei</a></li>
-						<li class="{% block active_timeline %}{% endblock %}"><a href="/timeline/">Timeline</a></li>
+						<li class="{% block active_start %}{% endblock %}"><a href="{% url 'timeline.views.start' %}">#aufschrei</a></li>
+						<li class="{% block active_timeline %}{% endblock %}"><a href="{% url 'timeline.views.timeline' %}">Timeline</a></li>
+						<li class="{% block active_zufall %}{% endblock %}"><a href="{% url 'timeline.views.zufall' %}">Zufall</a></li>
 					</ul>
 				</div>
 			</div>

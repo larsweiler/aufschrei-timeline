@@ -64,14 +64,11 @@ def zufall(request):
 	tweets = Tweet.objects.all().count()
 	random_tweet = random.random() * (tweets - 1)
 	try:
-		t = Tweets.objects.all()[slice: random_tweet+1]
+		t = Tweet.objects.all()[random_tweet:random_tweet+1]
 	except Tweet.DoesNotExist:
-		return render_to_response(
-				'tweet/unbekannt.html',
-				{'tweet': tweet_id},
-			)
+		raise Http404
 	return render_to_response(
 			'zufall/index.html',
-			{'tweet': t},
+			{'tweets': t},
 			context_instance=RequestContext(request)
 		)
