@@ -13,15 +13,17 @@
 
 	<body>
 
-    		<div class="navbar navbar-inverse navbar-fixed-top">
+    		<div class="navbar navbar-fixed-top">
 			<div class="container">
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
 				<a class="navbar-brand" href="#">{% block contenttitle %}{% endblock %}</a>
 				<div class="nav-collapse collapse">
 					<ul class="nav navbar-nav">
-						<li><a href="/timeline/">Timeline</a></li>
+						<li class="{% block active_start %}{% endblock %}"><a href="/">Start</a></li>
+						<li class="{% block active_timeline %}{% endblock %}"><a href="/timeline/">Timeline</a></li>
 					</ul>
 				</div>
 			</div>
@@ -32,6 +34,7 @@
 		</div>
 		<script src="http://code.jquery.com/jquery.js"></script>
 		<script src="/static/js/bootstrap.min.js"></script>
+		<script src="/static/js/holder.js"></script>
 	</body>
 </html>
 

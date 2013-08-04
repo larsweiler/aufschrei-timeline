@@ -6,6 +6,7 @@ from timeline.models import User
 from django.http import Http404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Count
+from django.template.context import RequestContext
 
 def timeline(request):
 	#timeline_list = Tweet.objects.all().order_by('created_at')
@@ -21,21 +22,30 @@ def timeline(request):
 	except EmptyPage:
 		timeline = paginator.page(paginator.num_pages)
 
-	return render_to_response('timeline/index.html', {'timeline': timeline, 'tweets': tweets})
+	return render_to_response(
+			'timeline/index.html',
+			{'timeline': timeline, 'tweets': tweets},
+			context_instance=RequestContext(request)
+		)
 
 def user(request, id):
-	# TODO number of tweets
 	try:
 		u = User.objects.get(pk=id)
 		t = Tweet.objects.filter(user__id=id).order_by('created_at')
 	except User.DoesNotExist:
 		raise Http404
-	return render_to_response('user/index.html', {'user': u, 'tweets': t, 'num_tweets': len(t)})
+	return render_to_response(
+			'user/index.html',
+			{'user': u, 'tweets': t, 'num_tweets': len(t)},
+		)
 
 def tweet(request, tweet_id):
 	try:
 		t = Tweet.objects.get(pk=tweet_id)
 	except Tweet.DoesNotExist:
 		raise Http404
-	return render_to_response('tweet/index.html', {'tweet': t})
+	return render_to_response(
+			'tweet/index.html',
+			{'tweet': t},
+		)
 
